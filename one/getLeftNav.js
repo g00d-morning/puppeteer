@@ -36,24 +36,7 @@ await page.waitFor(2000);
         blockSrc,
       }
     })
-     let menu = [...document.querySelectorAll('.scroll-tab-content > dl')].map(item => {
-         let dt = item.firstChild.innerText;
-         let product = [...item.getElementsByClassName('product flex')].map(i => {
-            //  let arr = []
-            //     arr.push({
-            //       [i.querySelector('.desc > .name').innerText]: i.firstChild.src})
-            return {
-              productName: i.querySelector('.desc > .name').innerText,
-              productImg: i.firstChild.src
-            }           
-         });
-      return  {
-          blockName: dt,
-          product,
-      }
-    })
     return {
-      menu,
       blockList
     }
 });
@@ -66,14 +49,14 @@ scrape().then((value) => {
   let jsonedValue = JSON.stringify(value);
   // let jsonedValue = JSON.parse(JSON.stringify(value));
   console.log("准备写入文件");
-fs.writeFile('./data/result2.json', jsonedValue,  function(err) {
+fs.writeFile('./data/leftNav.json', jsonedValue,  function(err) {
    if (err) {
        return console.error(err);
    }
    console.log("数据写入成功！");
    console.log("--------我是分割线-------------")
    console.log("读取写入的数据！");
-   fs.readFile('./data/result2.json', function (err, data) {
+   fs.readFile('./data/leftNav.json', function (err, data) {
       if (err) {
          return console.error(err);
       }
