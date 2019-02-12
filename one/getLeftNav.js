@@ -28,10 +28,11 @@ await page.waitFor(2000);
 
 
   const result = await page.evaluate(() => {
-    let blockList = [...document.querySelectorAll('#sectionLeft > li')].map(item => {
+    let blockList = [...document.querySelectorAll('#sectionLeft > li')].map((item,index) => {
       let blockName = item.querySelector('p').innerText;
       let blockSrc = item.querySelector('.icon > img').src;
       return {
+        id: index,
         blockName,
         blockSrc,
       }
